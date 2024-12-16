@@ -96,7 +96,7 @@ function validateAuthInput(email, password, isRegister = false) {
     }
     return true;
 }
-
+let originalName="名無し";
 // 投稿処理
 function createPost(author, content) {
     if (!currentUser) {
@@ -109,9 +109,11 @@ function createPost(author, content) {
     const button = $('#postButton');
     button.prop('disabled', true);
 
+    
     // author はログインしているユーザのメールアドレスに変更、userId を追加
     const postData = {
-        author: currentUser.email,
+        //author: currentUser.email,
+        author: originalName,
         content: content,
         timestamp: firebase.database.ServerValue.TIMESTAMP,
         userId: currentUser.uid
@@ -442,14 +444,14 @@ function clearAuthForm() {
     $('#loginPassword').val('');
 }
 
-/*let name3 ="名無し";*/
 // UI更新
 // 　バグ入りなので要修正（emailアドレスを表示するべきところを uid を表示してしまっている）
 function updateUI(user) {
     if (user) {
         $('.logged-in').show();
         $('.logged-out').hide();
-        $('#userEmail').text(user.email);
+        //$('#userEmail').text(user.email);
+        $('#userEmail').text(originalName);
     } else {
         $('.logged-in').hide();
         $('.logged-out').show();
@@ -530,22 +532,31 @@ function Teme(){
     });
 }
 
+function changedName(){
+    originalName =  $('#nameInput').val();
+    //$("#result").html(originalName);
+    $('#userEmail').text(originalName);
+}
+
     </script>
 </head>
 <body>
     <div class="container">
         <h1>掲示板アプリ</h1>
-        <button id="button"onclick="Menu()" >change</button>
+        <button id="button"onclick="Menu()" >設定</button>
         <div id="menu-container" >
-            <button id="teme1" class="teme-btn"onclick="Teme()" >白</button>
-            <button id="teme2" class="teme-btn"onclick="Teme()" >青</button>
-            <button id="teme3" class="teme-btn"onclick="Teme()" >ピンク</button>
-            <!--
-                <label for="authorInput">お名前</label>
-                <input type="text" id="authorInput" 
-                       class="form-control" placeholder="お名前">
-                <small class="character-count" id="authorCount">0/20</small>
-                -->
+            <div>背景色の変更</div>
+            <div class="btnContainer">
+                <button id="teme1" class="teme-btn"onclick="Teme()" >白</button>
+                <button id="teme2" class="teme-btn"onclick="Teme()" >青</button>
+                <button id="teme3" class="teme-btn"onclick="Teme()" >ピンク</button>
+            </div>
+            <div class = nameContainer>
+                <label for="nameInput" mar>ユーザー名</label>
+                <textarea id="nameInput" placeholder="ユーザー"></textarea>
+                <button id="changeName"class="teme-btn" onclick="changedName()">変更する</button>
+            </div>
+            <!--<div id="result">a</div>-->
         </div>
         <div id
         <!-- メッセージ表示エリア -->
