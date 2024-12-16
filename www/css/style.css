@@ -507,3 +507,48 @@ textarea.form-control {
 .logged-out {
     display: none;
 }
+
+
+#menu-container{
+    padding: 5%;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5%;
+}
+
+.teme-btn {
+    background-color: #a8a8a8;
+    color: #000000;
+    width: 25%;
+    margin-right:3%;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: none;
+}
+#teme1{
+    background-color:#ffffff ;
+    border: 1px solid #000000;
+}
+
+#teme2{
+    background-color: #add8e6;
+}
+
+#teme3{
+    background-color:#ffc0cb ;
+}
+
+
+
+#button{
+    background-color: #ffffff;
+    color: #000000;
+    width: 100px;
+    height: 35px;
+    border-color: #acacac;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    
+}
+

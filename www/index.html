@@ -442,6 +442,7 @@ function clearAuthForm() {
     $('#loginPassword').val('');
 }
 
+/*let name3 ="名無し";*/
 // UI更新
 // 　バグ入りなので要修正（emailアドレスを表示するべきところを uid を表示してしまっている）
 function updateUI(user) {
@@ -513,12 +514,40 @@ window.addEventListener('unload', function() {
         postsListener = null;
     }
 });
+
+function Menu() { 
+    $("#menu-container").toggle();
+}
+function Teme(){
+    $('#teme1').on('click', function() {
+        $("body").css("background","#ffffff");
+    });
+    $('#teme2').on('click', function() {
+        $("body").css("background","#add8e6");
+    });
+    $('#teme3').on('click', function() {
+        $("body").css("background","#ffc0cb");
+    });
+}
+
     </script>
 </head>
 <body>
     <div class="container">
         <h1>掲示板アプリ</h1>
-        
+        <button id="button"onclick="Menu()" >change</button>
+        <div id="menu-container" >
+            <button id="teme1" class="teme-btn"onclick="Teme()" >白</button>
+            <button id="teme2" class="teme-btn"onclick="Teme()" >青</button>
+            <button id="teme3" class="teme-btn"onclick="Teme()" >ピンク</button>
+            <!--
+                <label for="authorInput">お名前</label>
+                <input type="text" id="authorInput" 
+                       class="form-control" placeholder="お名前">
+                <small class="character-count" id="authorCount">0/20</small>
+                -->
+        </div>
+        <div id
         <!-- メッセージ表示エリア -->
         <div id="messageArea"></div>
 
@@ -527,12 +556,12 @@ window.addEventListener('unload', function() {
             <div class="form-group">
                 <label for="loginEmail">メールアドレス</label>
                 <input type="email" id="loginEmail" 
-                       class="form-control" placeholder="example@example.com">
+                    class="form-control" placeholder="example@example.com">
             </div>
             <div class="form-group">
                 <label for="loginPassword">パスワード</label>
                 <input type="password" id="loginPassword" 
-                       class="form-control" placeholder="6文字以上">
+                    class="form-control" placeholder="6文字以上">
                 <small class="help-text">※新規登録時は6文字以上</small>
             </div>
             <div class="button-group">
@@ -540,42 +569,47 @@ window.addEventListener('unload', function() {
                 <button id="registerButton" class="btn-secondary">新規登録</button>
             </div>
         </div>
+        <div class="menu2">
 
-        <!-- ログイン情報（ログイン時表示） -->
-        <div class="user-info logged-in">
-            <span>ログイン中：<span id="userEmail"></span></span>
-            <button id="logoutButton" class="btn-secondary">ログアウト</button>
         </div>
+        
+    
+    <!-- ログイン情報（ログイン時表示） -->
+    <div class="user-info logged-in">
+        <span>ログイン中：<span id="userEmail"></span></span>
+        <button id="logoutButton" class="btn-secondary">ログアウト</button>
+    </div>
 
-        <!-- 投稿フォーム（ログイン時表示） -->
-        <div class="post-form logged-in">
-            <div class="form-group">
-                <label for="contentInput">投稿内容</label>
-                <textarea id="contentInput" class="form-control" 
-                          placeholder="投稿内容を入力してください"></textarea>
-                <small class="character-count" id="contentCount">0/1000</small>
-            </div>
-            <div class="button-group">
-                <button id="postButton" class="btn-primary">投稿する</button>
-            </div>
+    <!-- 投稿フォーム（ログイン時表示） -->
+    <div class="post-form logged-in">
+        <div class="form-group">
+            <label for="contentInput">投稿内容</label>
+            <textarea id="contentInput" class="form-control" 
+                    placeholder="投稿内容を入力してください"></textarea>
+            <small class="character-count" id="contentCount">0/1000</small>
         </div>
-
-        <!-- 投稿一覧 -->
-        <div class="posts-container">
-            <h2>投稿一覧</h2>
-            <div class="posts-control">
-                <select id="sortOrder" class="form-control">
-                    <option value="newest">新しい順</option>
-                    <option value="oldest">古い順</option>
-                </select>
-            </div>
-            <div id="postsList"></div>
-            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
-                <div class="spinner"></div>
-                <p>読み込み中...</p>
-            </div>
+        <div class="button-group">
+            <button id="postButton" class="btn-primary">投稿する</button>
         </div>
     </div>
+   
+
+    <!-- 投稿一覧 -->
+    <div class="posts-container">
+        <h2>投稿一覧</h2>
+        <div class="posts-control">
+            <select id="sortOrder" class="form-control">
+                <option value="newest">新しい順</option>
+                <option value="oldest">古い順</option>
+            </select>
+        </div>
+        <div id="postsList"></div>
+        <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>読み込み中...</p>
+        </div>
+    </div>
+    
 
     <!-- 編集モーダルウィンドウ -->
     <div id="editModal" class="modal">
